@@ -1,5 +1,5 @@
 [project]
-name = "ai-engineering-bootcamp-prerequisites"
+name = "retrieval_rec_amazon"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -23,6 +23,7 @@ dev = [
     "langgraph>=1.0.5",
     "langsmith>=0.6.2",
     "matplotlib>=3.10.8",
+    "nbconvert>=7.17.0",
     "qdrant-client>=1.16.2",
     "ragas>=0.4.2",
 ]

@@ -34,7 +34,7 @@ def retrieve_data(query, qdrant_client, k=5):
     query_embedding = get_embedding(query)
 
     results = qdrant_client.query_points(
-        collection_name="Amazon-items-collection-00",
+        collection_name="Amazon-items-collection-01",
         query=query_embedding,
         limit=k,
     )
