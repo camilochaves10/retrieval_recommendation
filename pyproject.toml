@@ -23,9 +23,12 @@ dev = [
     "cohere>=5.20.4",
     "fastembed>=0.7.4",
     "langgraph>=1.0.5",
+    "langgraph-checkpoint-postgres>=3.0.4",
     "langsmith>=0.6.2",
     "matplotlib>=3.10.8",
     "nbconvert>=7.17.0",
+    "psycopg-binary>=3.3.3",
+    "psycopg2-binary>=2.9.11",
     "qdrant-client>=1.16.2",
     "ragas>=0.4.2",
 ]
