@@ -1,4 +1,4 @@
-from langsmith import traceable
+from langsmith import get_current_run_tree, traceable
 
 from langchain_core.messages import convert_to_openai_messages
 from openai import OpenAI
@@ -64,6 +64,15 @@ def agent_node(state) -> dict:
         temperature=0.5,
    )
 
+   current_run = get_current_run_tree()
+
+   if current_run:
+    current_run.metadata["usage_metadata"] = {
+        "input_tokens": raw_response.usage.prompt_tokens,
+        "output_tokens":raw_response.usage.completion_tokens,
+        "total_tokens": raw_response.usage.total_tokens
+    }
+
    ai_message = format_ai_message(response)
 
    return {
@@ -104,6 +113,18 @@ def intent_router_node(state):
             messages=[{"role": "system", "content": prompt}, *conversation],
             temperature=0.5,
     )
+
+    current_run = get_current_run_tree()
+
+    if current_run:
+        current_run.metadata["usage_metadata"] = {
+            "input_tokens": raw_response.usage.prompt_tokens,
+            "output_tokens":raw_response.usage.completion_tokens,
+            "total_tokens": raw_response.usage.total_tokens
+        }
+        trace_id = str(getattr(current_run, "trace_id", current_run.id))
+    else:
+        trace_id = None
 
     return {
         "question_relevant": response.question_relevant,
